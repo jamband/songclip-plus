@@ -1,0 +1,27 @@
+{
+  "require": {
+    "php": ">=7.2.0",
+    "yiisoft/yii2": "~2.0.14"
+  },
+  "require-dev": {
+    "vlucas/phpdotenv": "^2.5",
+    "phpunit/phpunit": "^7.2"
+  },
+  "provide": {
+    "bower-asset/inputmask": "*",
+    "bower-asset/jquery": "*",
+    "bower-asset/punycode": "*",
+    "bower-asset/typeahead.js": "*",
+    "bower-asset/yii2-pjax": "*"
+  },
+  "autoload": {
+    "files": [
+      "helpers/functions.php"
+    ]
+  },
+  "scripts": {
+    "dev": "composer install --quiet && npm install --silent && npm run dev",
+    "dev-cli-only": "composer install --quiet",
+    "clean": "rm -rf node_modules runtime/* vendor web/assets/*"
+  }
+}

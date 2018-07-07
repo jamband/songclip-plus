@@ -1,0 +1,9 @@
+@import "../variables/system-color";
+
+.track-title {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray-200;
+  }
+}

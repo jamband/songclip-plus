@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo -e "station1\ntitle1"

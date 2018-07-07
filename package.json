@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "clipboard": "^2.0.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.11",
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.1",
+    "optimize-css-assets-webpack-plugin": "^4.0.3",
+    "sass-loader": "^7.0.3",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "scripts": {
+    "watch": "webpack -w --config assets/build/dev.js --hide-modules",
+    "dev": "webpack --config assets/build/dev.js --hide-modules"
+  }
+}

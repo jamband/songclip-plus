@@ -1,0 +1,14 @@
+#!/usr/bin/osascript -l JavaScript
+
+ObjC.import('stdlib')
+
+var app = Application('iTunes')
+var station = app.currentTrack
+var title = app.currentStreamTitle
+
+if (!app.running() || !station.exists() || title.get() === null) {
+  console.log("Can't retrieve the track.")
+  $.exit(1)
+}
+
+station.name() + "\n" + title.get()
