@@ -43,6 +43,16 @@ class TrackBlacklist extends ActiveRecord
     /**
      * @return array
      */
+    public static function getTitles(): array
+    {
+        return static::find()->select('title')
+            ->orderBy(['title' => SORT_ASC])
+            ->column();
+    }
+
+    /**
+     * @return array
+     */
     public function attributeLabels(): array
     {
         return [
@@ -61,15 +71,5 @@ class TrackBlacklist extends ActiveRecord
             ['title', 'string', 'max' => 100],
             ['title', 'unique'],
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getTitles(): array
-    {
-        return static::find()->select('title')
-            ->orderBy(['title' => SORT_ASC])
-            ->column();
     }
 }

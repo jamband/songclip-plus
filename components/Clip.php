@@ -31,7 +31,7 @@ class Clip extends BaseObject
     /**
      * @return void
      */
-    public function execute()
+    public function execute(): void
     {
         exec(Yii::getAlias($this->commandPath), $track);
 

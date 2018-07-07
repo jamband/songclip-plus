@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
 
 class ClipTest extends TestCase
 {
-
     public function testExecute() :void
     {
         app()->set('clip', Clip::class);

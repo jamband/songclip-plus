@@ -16,7 +16,7 @@ namespace app\models;
 use yii\db\ActiveQuery;
 
 /**
- * @see TrackBlacklist
+ * @see \app\models\TrackBlacklist
  */
 class TrackBlacklistQuery extends ActiveQuery
 {

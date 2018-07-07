@@ -44,7 +44,7 @@ class Track extends ActiveRecord
     /**
      * @return array
      */
-    public static function getStations()
+    public static function getStations(): array
     {
         return static::find()
             ->select('station')

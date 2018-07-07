@@ -18,7 +18,7 @@ use yii\console\Controller;
 use yii\console\ExitCode;
 
 /**
- * Manages Clip model.
+ * Manages Track model.
  */
 class TrackController extends Controller
 {
@@ -37,6 +37,8 @@ class TrackController extends Controller
     }
 
     /**
+     * Displays a now playing track.
+     *
      * @return int
      */
     public function actionNow(): int
@@ -105,7 +107,7 @@ class TrackController extends Controller
     }
 
     /**
-     * Deletes an existing Clip model.
+     * Deletes an existing Track model.
      *
      * @param string $id
      * @return int

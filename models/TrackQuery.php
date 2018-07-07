@@ -16,7 +16,7 @@ namespace app\models;
 use yii\db\ActiveQuery;
 
 /**
- * @see Clip
+ * @see \app\models\Track
  */
 class TrackQuery extends ActiveQuery
 {
