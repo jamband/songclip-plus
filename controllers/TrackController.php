@@ -60,6 +60,7 @@ class TrackController extends Controller
         return $this->render('index', [
             'data' => new ActiveDataProvider([
                 'query' => $query,
+                'pagination' => false,
             ]),
             'stations' => Track::getStations(),
         ]);
