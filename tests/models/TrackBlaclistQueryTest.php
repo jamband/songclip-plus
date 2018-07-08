@@ -28,7 +28,7 @@ class TrackBlacklistQueryTest extends TestCase
         ]);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         db()->createCommand()->createTable('track_blacklist', [
             'id' => 'INTEGER PRIMARY KEY',
@@ -36,7 +36,7 @@ class TrackBlacklistQueryTest extends TestCase
         ])->execute();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         db()->close();
     }

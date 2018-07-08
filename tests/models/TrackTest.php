@@ -29,7 +29,7 @@ class TrackTest extends TestCase
         ]);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         db()->createCommand()->createTable('track', [
             'id' => 'INTEGER PRIMARY KEY',
@@ -44,7 +44,7 @@ class TrackTest extends TestCase
         ])->execute();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         db()->close();
     }

@@ -18,10 +18,13 @@ use PHPUnit\Framework\TestCase;
 
 class ClipTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        app()->set('clip', CLip::class);
+    }
+
     public function testExecute() :void
     {
-        app()->set('clip', Clip::class);
-
         $clip = app()->clip;
         $clip->commandPath = '@app/tests/components/clip-failure';
         $this->assertSame([], $clip->track);
@@ -38,8 +41,6 @@ class ClipTest extends TestCase
 
     public function testHasTrack(): void
     {
-        app()->set('clip', Clip::class);
-
         $clip = app()->clip;
         $clip->commandPath = '@app/tests/components/clip-failure';
         $this->assertFalse($clip->hasTrack());
@@ -48,6 +49,8 @@ class ClipTest extends TestCase
         $this->assertFalse($clip->hasTrack());
 
         $clip->commandPath = '@app/tests/components/clip-success';
+        $this->assertFalse($clip->hasTrack());
+
         $clip->execute();
         $this->assertTrue($clip->hasTrack());
     }
