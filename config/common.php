@@ -20,10 +20,6 @@ return [
         'cache' => [
             'class' => yii\caching\FileCache::class,
         ],
-        'formatter' => [
-            'dateFormat' => 'yyyy.MM.dd',
-            'datetimeFormat' => 'yyyy.MM.dd HH:mm',
-        ],
         'log' => [
             'targets' => [
                 [
