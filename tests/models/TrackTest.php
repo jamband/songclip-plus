@@ -94,6 +94,7 @@ class TrackGetStationsSeeder
         ]);
     }
 }
+
 class TrackValidateBlacklistTitlesSeeder
 {
     public function __construct()
