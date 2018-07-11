@@ -33,9 +33,7 @@ class Clip extends BaseObject
      */
     public function execute(): void
     {
-        exec(Yii::getAlias($this->commandPath), $track);
-
-        $this->track = $track;
+        exec(Yii::getAlias($this->commandPath), $this->track);
     }
 
     /**
