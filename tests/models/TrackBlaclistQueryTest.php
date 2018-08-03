@@ -15,30 +15,16 @@ namespace app\tests\models;
 
 use app\models\TrackBlacklist;
 use app\tests\DatabaseSeeder;
-use PHPUnit\Framework\TestCase;
-use yii\db\Connection;
+use app\tests\TestCase;
 
 class TrackBlacklistQueryTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
-    {
-        app()->set('db', [
-            'class' => Connection::class,
-            'dsn' => 'sqlite::memory:',
-        ]);
-    }
-
     protected function setUp(): void
     {
         db()->createCommand()->createTable('track_blacklist', [
             'id' => 'INTEGER PRIMARY KEY',
             'title' => 'TEXT NOT NULL',
         ])->execute();
-    }
-
-    protected function tearDown(): void
-    {
-        db()->close();
     }
 
     public function testLatest(): void
