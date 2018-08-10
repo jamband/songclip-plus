@@ -21,7 +21,7 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property int $created_at
  *
- * @property array $stations
+ * @property string[] $stations
  */
 class Track extends ActiveRecord
 {
