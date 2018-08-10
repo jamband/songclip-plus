@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use yii\db\Migration;
 
-/**
- * Class m180707_033624_init
- */
 class m180707_033624_init extends Migration
 {
     /**
-     * {@inheritdoc}
+     * @return void
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('track', [
             'id' => $this->primaryKey(),
@@ -26,9 +25,9 @@ class m180707_033624_init extends Migration
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('track');
         $this->dropTable('track_blacklist');
