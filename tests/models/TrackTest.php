@@ -37,7 +37,13 @@ class TrackTest extends TestCase
 
     public function testGetStations(): void
     {
-        new TrackGetStationsSeeder;
+        DatabaseSeeder::run('track', [
+            ['station1', 'title1', time()],
+            ['station2', 'title2', time()],
+            ['station1', 'title3', time()],
+            ['station2', 'title4', time()],
+            ['station3', 'title5', time()],
+        ]);
 
         $this->assertSame(3, count(Track::getStations()));
     }
@@ -54,7 +60,9 @@ class TrackTest extends TestCase
 
     public function testValidateBlacklistTitles(): void
     {
-        new TrackValidateBlacklistTitlesSeeder;
+        DatabaseSeeder::run('track_blacklist', [
+            ['Super Charisma Radio'],
+        ]);
 
         $track = new Track;
         $track->station = 'station1';
@@ -63,30 +71,5 @@ class TrackTest extends TestCase
 
         $this->assertTrue($track->hasErrors());
         $this->assertSame(1, count($track->getErrors('title')));
-
-    }
-}
-
-class TrackGetStationsSeeder
-{
-    public function __construct()
-    {
-        new DatabaseSeeder('track', [
-            ['station1', 'title1', time()],
-            ['station2', 'title2', time()],
-            ['station1', 'title3', time()],
-            ['station2', 'title4', time()],
-            ['station3', 'title5', time()],
-        ]);
-    }
-}
-
-class TrackValidateBlacklistTitlesSeeder
-{
-    public function __construct()
-    {
-        new DatabaseSeeder('track_blacklist', [
-            ['Super Charisma Radio'],
-        ]);
     }
 }

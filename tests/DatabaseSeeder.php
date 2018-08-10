@@ -18,8 +18,9 @@ class DatabaseSeeder
     /**
      * @param string $table
      * @param array $rows
+     * @return void
      */
-    public function __construct(string $table, array $rows)
+    public static function run(string $table, array $rows): void
     {
         $columns = db()->getTableSchema($table)->getColumnNames();
 

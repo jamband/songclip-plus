@@ -29,24 +29,16 @@ class TrackBlacklistQueryTest extends TestCase
 
     public function testLatest(): void
     {
-        new TrackBlacklistQueryLatestSeeder;
+        DatabaseSeeder::run('track_blacklist', [
+            ['title1'],
+            ['title2'],
+            ['title3'],
+        ]);
 
         $track = TrackBlacklist::find()->latest()->all();
 
         $this->assertSame('title3', $track[0]->title);
         $this->assertSame('title2', $track[1]->title);
         $this->assertSame('title1', $track[2]->title);
-    }
-}
-
-class TrackBlacklistQueryLatestSeeder
-{
-    public function __construct()
-    {
-        new DatabaseSeeder('track_blacklist', [
-            ['title1'],
-            ['title2'],
-            ['title3'],
-        ]);
     }
 }

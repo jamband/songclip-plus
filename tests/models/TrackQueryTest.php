@@ -31,7 +31,11 @@ class TrackQueryTest extends TestCase
 
     public function testLatest(): void
     {
-        new TrackQueryLatestSeeder;
+        DatabaseSeeder::run('track', [
+            ['station1', 'title1', time()],
+            ['station2', 'title2', time() + 1],
+            ['station3', 'title3', time() + 2],
+        ]);
 
         $track = Track::find()->latest()->all();
 
@@ -42,7 +46,7 @@ class TrackQueryTest extends TestCase
 
     public function testStation(): void
     {
-        new TrackQueryCommonSeeder;
+        static::commonSeeder();
 
         $track = Track::find()->station('station1')->all();
 
@@ -52,32 +56,17 @@ class TrackQueryTest extends TestCase
 
     public function testTitle(): void
     {
-        new TrackQueryCommonSeeder;
+        static::commonSeeder();
 
         $track = Track::find()->title('e1')->all();
 
         $this->assertSame('title1', $track[0]->title);
         $this->assertSame(1, count($track));
     }
-}
 
-class TrackQueryLatestSeeder
-{
-    public function __construct()
+    private static function commonSeeder(): void
     {
-        new DatabaseSeeder('track', [
-            ['station1', 'title1', time()],
-            ['station2', 'title2', time() + 1],
-            ['station3', 'title3', time() + 2],
-        ]);
-    }
-}
-
-class TrackQueryCommonSeeder
-{
-    public function __construct()
-    {
-        new DatabaseSeeder('track', [
+        DatabaseSeeder::run('track', [
             ['station1', 'title1', time()],
             ['station2', 'title2', time()],
         ]);

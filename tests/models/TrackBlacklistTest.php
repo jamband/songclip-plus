@@ -29,24 +29,15 @@ class TrackBlacklistTest extends TestCase
 
     public function testGetTitles(): void
     {
-        new TrackBlacklistGetTitlesSeeder;
+        DatabaseSeeder::run('track_blacklist', [
+            ['title1'],
+            ['title2'],
+        ]);
 
         $titles = TrackBlacklist::getTitles();
 
         $this->assertSame(2, count($titles));
         $this->assertSame('title1', $titles[0]);
         $this->assertSame('title2', $titles[1]);
-    }
-
-}
-
-class TrackBlacklistGetTitlesSeeder
-{
-    public function __construct()
-    {
-        new DatabaseSeeder('track_blacklist', [
-            ['title1'],
-            ['title2'],
-        ]);
     }
 }
