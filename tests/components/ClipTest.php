@@ -25,33 +25,31 @@ class ClipTest extends TestCase
 
     public function testExecute() :void
     {
-        $clip = app()->clip;
-        $clip->commandPath = '@app/tests/components/clip-failure';
-        $this->assertSame([], $clip->track);
+        app()->clip->commandPath = '@app/tests/components/clip-failure';
+        $this->assertSame([], app()->clip->track);
 
-        $clip->execute();
-        $this->assertSame([], $clip->track);
+        app()->clip->execute();
+        $this->assertSame([], app()->clip->track);
 
-        $clip->commandPath = '@app/tests/components/clip-success';
-        $this->assertSame([], $clip->track);
+        app()->clip->commandPath = '@app/tests/components/clip-success';
+        $this->assertSame([], app()->clip->track);
 
-        $clip->execute();
-        $this->assertSame(['station1', 'title1'], $clip->track);
+        app()->clip->execute();
+        $this->assertSame(['station1', 'title1'], app()->clip->track);
     }
 
     public function testHasTrack(): void
     {
-        $clip = app()->clip;
-        $clip->commandPath = '@app/tests/components/clip-failure';
-        $this->assertFalse($clip->hasTrack());
+        app()->clip->commandPath = '@app/tests/components/clip-failure';
+        $this->assertFalse(app()->clip->hasTrack());
 
-        $clip->execute();
-        $this->assertFalse($clip->hasTrack());
+        app()->clip->execute();
+        $this->assertFalse(app()->clip->hasTrack());
 
-        $clip->commandPath = '@app/tests/components/clip-success';
-        $this->assertFalse($clip->hasTrack());
+        app()->clip->commandPath = '@app/tests/components/clip-success';
+        $this->assertFalse(app()->clip->hasTrack());
 
-        $clip->execute();
-        $this->assertTrue($clip->hasTrack());
+        app()->clip->execute();
+        $this->assertTrue(app()->clip->hasTrack());
     }
 }

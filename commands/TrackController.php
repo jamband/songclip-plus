@@ -43,11 +43,10 @@ class TrackController extends Controller
      */
     public function actionNow(): int
     {
-        $clip = app()->clip;
-        $clip->execute();
+        app()->clip->execute();
 
-        if ($clip->hasTrack()) {
-            list(, $title) = $clip->track;
+        if (app()->clip->hasTrack()) {
+            list(, $title) = app()->clip->track;
 
             $this->stdout("Now playing: $title\n");
 
@@ -66,11 +65,10 @@ class TrackController extends Controller
      */
     public function actionClip(string $enableOutput = 'yes'): int
     {
-        $clip = app()->clip;
-        $clip->execute();
+        app()->clip->execute();
 
-        if ($clip->hasTrack()) {
-            list($station, $title) = $clip->track;
+        if (app()->clip->hasTrack()) {
+            list($station, $title) = app()->clip->track;
 
             $model = new Track;
             $model->station = $station;

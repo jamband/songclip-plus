@@ -71,11 +71,10 @@ class TrackController extends Controller
      */
     public function actionNowPlaying(): string
     {
-        $clip = app()->clip;
-        $clip->execute();
+        app()->clip->execute();
 
         if (app()->clip->hasTrack()) {
-            list($station, $title) = $clip->track;
+            list($station, $title) = app()->clip->track;
 
             session()->set('station', $station);
             session()->set('title', $title);
