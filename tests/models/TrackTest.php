@@ -35,6 +35,28 @@ class TrackTest extends TestCase
         ])->execute();
     }
 
+    public function testAll(): void
+    {
+        DatabaseSeeder::run('track', [
+            ['station1', 'foo', time()],
+            ['station2', 'bar', time() + 1],
+            ['station1', 'baz', time() + 2],
+        ]);
+
+        $data = Track::all();
+        $this->assertSame('baz', $data->models[0]->title);
+        $this->assertSame(3, count($data->models));
+
+        $data = Track::all('station2');
+        $this->assertSame('bar', $data->models[0]->title);
+        $this->assertSame(1, count($data->models));
+
+
+        $data = Track::all(null, 'oo');
+        $this->assertSame('foo', $data->models[0]->title);
+        $this->assertSame(1, count($data->models));
+    }
+
     public function testGetStations(): void
     {
         DatabaseSeeder::run('track', [
@@ -48,7 +70,7 @@ class TrackTest extends TestCase
         $this->assertSame(3, count(Track::getStations()));
     }
 
-    public function testBeforeSave(): void
+    public function testBehaviors(): void
     {
         $track = new Track;
         $track->station = 'station1';

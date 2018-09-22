@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace app\models;
 
+use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
 /**
@@ -39,6 +41,32 @@ class Track extends ActiveRecord
     public static function find(): TrackQuery
     {
         return new TrackQuery(static::class);
+    }
+
+    /**
+     * @param null|string $station
+     * @param null|string $title
+     * @return ActiveDataProvider
+     */
+    public static function all(?string $station = null, ?string $title = null): ActiveDataProvider
+    {
+        $query = static::find();
+
+        if (null !== $station) {
+            $query->station($station);
+        }
+
+        if (null === $title) {
+            $query->latest();
+        } else {
+            $query->title($title)
+                ->inTitleOrder();
+        }
+
+        return new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
     }
 
     /**
@@ -90,19 +118,15 @@ class Track extends ActiveRecord
     }
 
     /**
-     * @param bool $insert
-     * @return bool
+     * @return array
      */
-    public function beforeSave($insert): bool
+    public function behaviors(): array
     {
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-
-        if ($insert) {
-            $this->created_at = time();
-        }
-
-        return true;
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false,
+            ],
+        ];
     }
 }

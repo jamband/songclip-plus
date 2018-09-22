@@ -35,7 +35,7 @@ class TrackBlacklistQueryTest extends TestCase
             ['title3'],
         ]);
 
-        $track = TrackBlacklist::find()->latest()->all();
+        $track = TrackBlacklist::find()->latest('id')->all();
 
         $this->assertSame('title3', $track[0]->title);
         $this->assertSame('title2', $track[1]->title);

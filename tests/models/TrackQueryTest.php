@@ -48,20 +48,38 @@ class TrackQueryTest extends TestCase
     {
         static::commonSeeder();
 
-        $track = Track::find()->station('station1')->all();
+        $tracks = Track::find()->station('foo')->all();
+        $this->assertSame(0, count($tracks));
 
-        $this->assertSame('station1', $track[0]->station);
-        $this->assertSame(1, count($track));
+        $tracks = Track::find()->station('station1')->all();
+        $this->assertSame('station1', $tracks[0]->station);
+        $this->assertSame(1, count($tracks));
     }
 
     public function testTitle(): void
     {
         static::commonSeeder();
 
-        $track = Track::find()->title('e1')->all();
+        $tracks = Track::find()->title('foo')->all();
+        $this->assertSame(0, count($tracks));
 
-        $this->assertSame('title1', $track[0]->title);
-        $this->assertSame(1, count($track));
+        $tracks = Track::find()->title('e1')->all();
+        $this->assertSame('title1', $tracks[0]->title);
+        $this->assertSame(1, count($tracks));
+    }
+
+    public function testInTitleOrder(): void
+    {
+        DatabaseSeeder::run('track', [
+            ['station1', 'foo', time()],
+            ['station1', 'bar', time()],
+            ['station1', 'baz', time()],
+        ]);
+
+        $tracks = Track::find()->inTitleOrder()->all();
+        $this->assertSame('bar', $tracks[0]->title);
+        $this->assertSame('baz', $tracks[1]->title);
+        $this->assertSame('foo', $tracks[2]->title);
     }
 
     private static function commonSeeder(): void

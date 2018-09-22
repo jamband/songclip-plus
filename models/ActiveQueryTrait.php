@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace app\models;
 
-use yii\db\ActiveQuery;
-
-/**
- * @see \app\models\TrackBlacklist
- */
-class TrackBlacklistQuery extends ActiveQuery
+trait ActiveQueryTrait
 {
-    use ActiveQueryTrait;
+    /**
+     * @param string $column
+     * @return self
+     */
+    public function latest(string $column = 'created_at'): self
+    {
+        return $this->orderBy([$column => SORT_DESC]);
+    }
 }

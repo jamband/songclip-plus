@@ -20,30 +20,35 @@ use yii\db\ActiveQuery;
  */
 class TrackQuery extends ActiveQuery
 {
-    /**
-     * @return TrackQuery
-     */
-    public function latest(): TrackQuery
-    {
-        return $this->orderBy(['created_at' => SORT_DESC]);
-    }
+    use ActiveQueryTrait;
 
     /**
-     * @param string|null $station
+     * @param null|string $station
      * @return TrackQuery
      */
     public function station(?string $station): TrackQuery
     {
-        return $this->andFilterWhere(['station' => $station]);
+        if (in_array($station, Track::getStations(), true)) {
+            return $this->andWhere(['station' => $station]);
+        }
+
+        return $this->andWhere(['station' => '']);
     }
 
     /**
-     * @param string|null $title
+     * @param null|string $title
      * @return TrackQuery
      */
     public function title(?string $title): TrackQuery
     {
-        return $this->andFilterWhere(['like', 'title', trim($title)])
-            ->orderBy(['title' => SORT_ASC]);
+        return $this->andFilterWhere(['like', 'title', trim($title)]);
+    }
+
+    /**
+     * @return TrackQuery
+     */
+    public function inTitleOrder(): TrackQuery
+    {
+        return $this->orderBy(['title' => SORT_ASC]);
     }
 }

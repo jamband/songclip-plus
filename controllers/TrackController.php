@@ -43,25 +43,14 @@ class TrackController extends Controller
     }
 
     /**
-     * @param string|null $station
-     * @param string|null $title
+     * @param null|string $station
+     * @param null|string $title
      * @return string
      */
     public function actionIndex(?string $station = null, ?string $title = null): string
     {
-        $query = Track::find();
-
-        if (null === $title) {
-            $query->station($station)->latest();
-        } else {
-            $query->title($title);
-        }
-
         return $this->render('index', [
-            'data' => new ActiveDataProvider([
-                'query' => $query,
-                'pagination' => false,
-            ]),
+            'data' => Track::all($station, $title),
             'stations' => Track::getStations(),
         ]);
     }
@@ -105,11 +94,11 @@ class TrackController extends Controller
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionDelete(string $id): Response
+    public function actionDelete(int $id): Response
     {
         $model = Track::findOne($id);
 

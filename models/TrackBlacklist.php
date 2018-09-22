@@ -13,13 +13,14 @@ declare(strict_types=1);
 
 namespace app\models;
 
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 
 /**
  * @property int $id
  * @property string $title
  *
- * @property array $titles
+ * @property string[] $titles
  */
 class TrackBlacklist extends ActiveRecord
 {
@@ -41,11 +42,25 @@ class TrackBlacklist extends ActiveRecord
     }
 
     /**
+     * @return ActiveDataProvider
+     */
+    public static function all(): ActiveDataProvider
+    {
+        $query = static::find();
+
+        return new ActiveDataProvider([
+            'query' => $query->latest('id'),
+            'pagination' => false,
+        ]);
+    }
+
+    /**
      * @return array
      */
     public static function getTitles(): array
     {
-        return static::find()->select('title')
+        return static::find()
+            ->select('title')
             ->orderBy(['title' => SORT_ASC])
             ->column();
     }

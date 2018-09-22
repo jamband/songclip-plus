@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace app\controllers;
 
 use app\models\TrackBlacklist;
-use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
@@ -49,10 +48,7 @@ class TrackBlacklistController extends Controller
         }
 
         return $this->render('index', [
-            'data' => new ActiveDataProvider([
-                'query' => TrackBlacklist::find()->latest(),
-                'pagination' => false,
-            ]),
+            'data' => TrackBlacklist::all(),
             'model' => $model,
         ]);
     }
