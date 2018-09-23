@@ -51,7 +51,6 @@ class TrackTest extends TestCase
         $this->assertSame('bar', $data->models[0]->title);
         $this->assertSame(1, count($data->models));
 
-
         $data = Track::all(null, 'oo');
         $this->assertSame('foo', $data->models[0]->title);
         $this->assertSame(1, count($data->models));

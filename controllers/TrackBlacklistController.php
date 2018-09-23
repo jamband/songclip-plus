@@ -54,11 +54,11 @@ class TrackBlacklistController extends Controller
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return Response
      * @throws NotFoundHttpException
      */
-    public function actionDelete(string $id): Response
+    public function actionDelete(int $id): Response
     {
         $model = TrackBlacklist::findOne($id);
 

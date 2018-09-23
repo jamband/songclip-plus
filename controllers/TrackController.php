@@ -14,12 +14,11 @@ declare(strict_types=1);
 namespace app\controllers;
 
 use app\models\Track;
-use yii\data\ActiveDataProvider;
 use yii\filters\AjaxFilter;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\web\Response;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class TrackController extends Controller
 {
