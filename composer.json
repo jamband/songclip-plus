@@ -1,11 +1,11 @@
 {
   "require": {
     "php": ">=7.2.0",
-    "yiisoft/yii2": "~2.0.21"
+    "yiisoft/yii2": "^2.0"
   },
   "require-dev": {
-    "vlucas/phpdotenv": "^3.4",
-    "phpunit/phpunit": "^8.2"
+    "phpunit/phpunit": "^8.4",
+    "vlucas/phpdotenv": "^3.6"
   },
   "provide": {
     "bower-asset/inputmask": "*",
