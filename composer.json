@@ -4,8 +4,8 @@
     "yiisoft/yii2": "^2.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.4",
-    "vlucas/phpdotenv": "^3.6"
+    "phpunit/phpunit": "^8.5",
+    "vlucas/phpdotenv": "^4.1"
   },
   "provide": {
     "bower-asset/inputmask": "*",
