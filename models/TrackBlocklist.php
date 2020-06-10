@@ -22,23 +22,22 @@ use yii\db\ActiveRecord;
  *
  * @property string[] $titles
  */
-class TrackBlacklist extends ActiveRecord
+class TrackBlocklist extends ActiveRecord
 {
     /**
      * @return string
      */
     public static function tableName(): string
     {
-        return 'track_blacklist';
+        return 'track_blocklist';
     }
 
-
     /**
-     * @return TrackBlacklistQuery
+     * @return TrackBlocklistQuery
      */
-    public static function find(): TrackBlacklistQuery
+    public static function find(): TrackBlocklistQuery
     {
-        return new TrackBlacklistQuery(static::class);
+        return new TrackBlocklistQuery(static::class);
     }
 
     /**

@@ -33,8 +33,8 @@ use yii\helpers\Html;
                     <li class="nav-item<?= 'track' === app()->controller->id ? ' active' : '' ?>">
                         <a class="nav-link" href="<?= url(['/track/index']) ?>">Tracks</a>
                     </li>
-                    <li class="nav-item<?= 'track-blacklist' === app()->controller->id ? ' active' : '' ?>">
-                        <a class="nav-link" href="<?= url(['/track-blacklist/index']) ?>">TrackBlacklists</a>
+                    <li class="nav-item<?= 'track-blocklist' === app()->controller->id ? ' active' : '' ?>">
+                        <a class="nav-link" href="<?= url(['/track-blocklist/index']) ?>">TrackBlocklists</a>
                     </li>
                 </ul>
                 <?= Html::beginForm(['/track/index'], 'get', ['class' => 'form-inline my-2 my-lg-0']) ?>

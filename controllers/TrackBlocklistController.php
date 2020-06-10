@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use app\models\TrackBlacklist;
+use app\models\TrackBlocklist;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 
-class TrackBlacklistController extends Controller
+class TrackBlocklistController extends Controller
 {
     /**
      * @return array
@@ -41,14 +41,14 @@ class TrackBlacklistController extends Controller
      */
     public function actionIndex()
     {
-        $model = new TrackBlacklist;
+        $model = new TrackBlocklist;
 
         if ($model->load(request()->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
         return $this->render('index', [
-            'data' => TrackBlacklist::all(),
+            'data' => TrackBlocklist::all(),
             'model' => $model,
         ]);
     }
@@ -60,7 +60,7 @@ class TrackBlacklistController extends Controller
      */
     public function actionDelete(int $id): Response
     {
-        $model = TrackBlacklist::findOne($id);
+        $model = TrackBlocklist::findOne($id);
 
         if (null === $model) {
             throw new NotFoundHttpException('Page not found.');

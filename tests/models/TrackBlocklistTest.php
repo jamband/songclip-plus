@@ -13,32 +13,31 @@ declare(strict_types=1);
 
 namespace app\tests\models;
 
-use app\models\TrackBlacklist;
+use app\models\TrackBlocklist;
 use app\tests\DatabaseSeeder;
 use app\tests\TestCase;
 
-class TrackBlacklistQueryTest extends TestCase
+class TrackBlocklistTest extends TestCase
 {
     protected function setUp(): void
     {
-        db()->createCommand()->createTable('track_blacklist', [
+        db()->createCommand()->createTable('track_blocklist', [
             'id' => 'INTEGER PRIMARY KEY',
             'title' => 'TEXT NOT NULL',
         ])->execute();
     }
 
-    public function testLatest(): void
+    public function testGetTitles(): void
     {
-        DatabaseSeeder::run('track_blacklist', [
+        DatabaseSeeder::run('track_blocklist', [
             ['title1'],
             ['title2'],
-            ['title3'],
         ]);
 
-        $track = TrackBlacklist::find()->latest('id')->all();
+        $titles = TrackBlocklist::getTitles();
 
-        $this->assertSame('title3', $track[0]->title);
-        $this->assertSame('title2', $track[1]->title);
-        $this->assertSame('title1', $track[2]->title);
+        $this->assertSame(2, count($titles));
+        $this->assertSame('title1', $titles[0]);
+        $this->assertSame('title2', $titles[1]);
     }
 }

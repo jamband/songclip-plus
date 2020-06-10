@@ -102,7 +102,7 @@ class Track extends ActiveRecord
             [['station', 'title'], 'required'],
             [['station', 'title'], 'trim'],
             ['title', 'unique', 'message' => 'The track has already been taken.'],
-            ['title', 'validateBlacklistTitles'],
+            ['title', 'validateBlocklistTitles'],
         ];
     }
 
@@ -110,10 +110,10 @@ class Track extends ActiveRecord
      * @param string $attribute
      * @return void
      */
-    public function validateBlacklistTitles(string $attribute): void
+    public function validateBlocklistTitles(string $attribute): void
     {
-        if (in_array($this->$attribute, TrackBlacklist::getTitles(), true)) {
-            $this->addError($attribute, 'That title is included in the blacklist.');
+        if (in_array($this->$attribute, TrackBlocklist::getTitles(), true)) {
+            $this->addError($attribute, 'That title is included in the blocklist.');
         }
     }
 

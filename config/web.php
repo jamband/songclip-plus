@@ -33,9 +33,9 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'rules' => [
-                '<controller:(track|track-blacklist)>s' => '<controller>/index',
-                '<controller:(track|track-blacklist)>/delete/<id:\d+>' => '<controller>/delete',
-                '<controller:(track|track-blacklist)>/<action:(create|now-playing|clip)>' => '<controller>/<action>',
+                '<controller:(track|track-blocklist)>s' => '<controller>/index',
+                '<controller:(track|track-blocklist)>/delete/<id:\d+>' => '<controller>/delete',
+                '<controller:(track|track-blocklist)>/<action:(create|now-playing|clip)>' => '<controller>/<action>',
                 '' => 'track/index',
             ],
         ],

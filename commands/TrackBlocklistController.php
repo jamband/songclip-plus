@@ -18,18 +18,18 @@ use yii\console\Controller;
 use yii\console\ExitCode;
 
 /**
- * Manages TrackBlacklist model.
+ * Manages TrackBlocklist model.
  */
-class TrackBlacklistController extends Controller
+class TrackBlocklistController extends Controller
 {
     /**
-     * Lists all blacklist of track.
+     * Lists all blocklist of track.
      *
      * @return int
      */
     public function actionIndex(): int
     {
-        foreach (TrackBlacklist::find()->latest()->all() as $model) {
+        foreach (TrackBlocklist::find()->latest()->all() as $model) {
             $this->stdout("$model->id $model->title\n");
         }
 
@@ -37,18 +37,18 @@ class TrackBlacklistController extends Controller
     }
 
     /**
-     * Creates a new blacklist for track.
+     * Creates a new blocklist for track.
      *
      * @param string $title
      * @return int
      */
     public function actionCreate(string $title): int
     {
-        $model = new TrackBlacklist;
+        $model = new TrackBlocklist;
         $model->title = $title;
 
         if ($model->save()) {
-            $this->stdout("New blacklist has been created.\n");
+            $this->stdout("New blocklist has been created.\n");
         } else {
             $this->stderr($model->getFirstError('title')."\n");
         }
@@ -57,14 +57,14 @@ class TrackBlacklistController extends Controller
     }
 
     /**
-     * Deletes an existing TrackBlacklist model.
+     * Deletes an existing TrackBlocklist model.
      *
      * @param string $id
      * @return int
      */
     public function actionDelete(string $id): int
     {
-        $model = TrackBlacklist::findOne($id);
+        $model = TrackBlocklist::findOne($id);
 
         if (null !== $model) {
             $model->delete();
@@ -74,7 +74,7 @@ class TrackBlacklistController extends Controller
             return ExitCode::OK;
         }
 
-        $this->stderr("The blacklist not found.\n");
+        $this->stderr("The blocklist not found.\n");
 
         return ExitCode::UNSPECIFIED_ERROR;
     }

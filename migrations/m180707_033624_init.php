@@ -18,7 +18,7 @@ class m180707_033624_init extends Migration
             'created_at' => $this->integer()->notNull(),
         ]);
 
-        $this->createTable('track_blacklist', [
+        $this->createTable('track_blocklist', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
         ]);
@@ -30,6 +30,6 @@ class m180707_033624_init extends Migration
     public function safeDown(): void
     {
         $this->dropTable('track');
-        $this->dropTable('track_blacklist');
+        $this->dropTable('track_blocklist');
     }
 }

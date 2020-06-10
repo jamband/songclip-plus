@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace app\tests\models;
 
 use app\models\Track;
-use app\models\TrackBlacklist;
+use app\models\TrackBlocklist;
 use app\tests\DatabaseSeeder;
 use app\tests\TestCase;
 
@@ -29,7 +29,7 @@ class TrackTest extends TestCase
             'created_at' => 'INTEGER NOT NULL',
         ])->execute();
 
-        db()->createCommand()->createTable('track_blacklist', [
+        db()->createCommand()->createTable('track_blocklist', [
             'id' => 'INTEGER PRIMARY KEY',
             'title' => 'TEXT NOT NULL',
         ])->execute();
@@ -79,15 +79,15 @@ class TrackTest extends TestCase
         $this->assertSame(time(), $track->created_at);
     }
 
-    public function testValidateBlacklistTitles(): void
+    public function testValidateBlocklistTitles(): void
     {
-        DatabaseSeeder::run('track_blacklist', [
+        DatabaseSeeder::run('track_blocklist', [
             ['Super Charisma Radio'],
         ]);
 
         $track = new Track;
         $track->station = 'station1';
-        $track->title = TrackBlacklist::getTitles()[0];
+        $track->title = TrackBlocklist::getTitles()[0];
         $track->save();
 
         $this->assertTrue($track->hasErrors());
