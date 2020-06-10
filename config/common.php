@@ -31,7 +31,7 @@ return [
         ],
         'db' => [
             'class' => yii\db\Connection::class,
-            'dsn' => getenv('DB_DSN'),
+            'dsn' => $_SERVER['DB_DSN'],
             'charset' => 'utf8',
             'enableSchemaCache' => true,
         ],

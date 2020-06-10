@@ -14,7 +14,7 @@ $config = [
     'defaultRoute' => 'track/index',
     'components' => [
         'request' => [
-            'cookieValidationKey' => getenv('COOKIE_VALIDATION_KEY'),
+            'cookieValidationKey' => $_SERVER['COOKIE_VALIDATION_KEY'],
         ],
         'user' => [
             'identityClass' => false,
